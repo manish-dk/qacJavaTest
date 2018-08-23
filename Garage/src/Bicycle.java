@@ -1,8 +1,8 @@
 
 public class Bicycle extends Vehicle {
-	private int gearNumber;
+	int gearNumber;
 	
-	public void Bicycle(String make, int wheelNumber, String colour, boolean hasEngine) {
+	public Bicycle(String make, int wheelNumber, String colour,int gearNumber, boolean hasEngine) {
 		this.setMake(make);
 		this.setWheelNumber(wheelNumber);
 		this.gearNumber = gearNumber;
