@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FeatureManager {
+	
 	private Scanner s = new Scanner(System.in);
 	private ArrayList<Feature> featureList = new ArrayList<>();
 	private boolean gameState = true;
@@ -22,7 +23,7 @@ public class FeatureManager {
 
 	public void movePlayer() {
 		
-		System.out.println("1 for north, 2 for east, 3 for south, 4 for west, 5 to exit");
+//		System.out.println("1 for north, 2 for east, 3 for south, 4 for west, 5 to exit");
 		
 //		Using int instead of string cos scanner was being funny
 		
@@ -47,14 +48,22 @@ public class FeatureManager {
 			gameState = false;
 			System.out.println("Wow, what a quitter!");
 		}
+		
 	}
 	
 	public void gameLoop() {
 		System.out.println("You are a new trainee at QAC, you are having a good time but running into the wrong person could be dangerous. \nIf you run into a good trainer you will finish training and land a job paying $9999999/yr. \nIf you run into an evil trainer you will be fired. Also you will die.");
 		while(gameState) {
+			
 			System.out.println("Your position: x:" + featureList.get(0).getX() +" y:" + featureList.get(0).getY());
+			System.out.println("1 for north, 2 for east, 3 for south, 4 for west, 5 to exit");
+			
 			movePlayer();
 			checkStatus();
+			checkLocation();
+			
+//			System.out.println("Your position: x:" + featureList.get(0).getX() +" y:" + featureList.get(0).getY());
+			
 			
 		}
 	}
@@ -75,17 +84,47 @@ public class FeatureManager {
 				}
 			}
 			
-			if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() >f.getY()) {
+//			if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() >f.getY()) {
+//				System.out.println("There is someone to the South West");
+//			}
+//			else if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() == f.getY()) {
+//				System.out.println("There is someone to the West");
+//			}
+//			else if(featureList.get(0).getX() == f.getX() & featureList.get(0).getY() > f.getY()) {
+//				System.out.println("There is someone to the South");
+//			}
+//			else if(featureList.get(0).getX() < f.getX() & featureList.get(0).getY() < f.getY()) {
+//				System.out.println("There is someone to the North East");
+//			}
+//			else if(featureList.get(0).getX() == f.getX() & featureList.get(0).getY() < f.getY()) {
+//				System.out.println("There is someone to the North");
+//			}
+//			else if(featureList.get(0).getX() < f.getX() & featureList.get(0).getY() == f.getY()) {
+//				System.out.println("There is someone to the East");
+//			}
+		}
+	}
+	
+	public void checkLocation() {
+		for(Feature f : featureList) {
+			
+			if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() > f.getY()) {
 				System.out.println("There is someone to the South West");
+			}
+			else if(featureList.get(0).getX() < f.getX() & featureList.get(0).getY() > f.getY()) {
+				System.out.println("There is someone to the South East");
 			}
 			else if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() == f.getY()) {
 				System.out.println("There is someone to the West");
 			}
-			else if(featureList.get(0).getX() == f.getX() & featureList.get(0).getY() >f.getY()) {
+			else if(featureList.get(0).getX() == f.getX() & featureList.get(0).getY() > f.getY()) {
 				System.out.println("There is someone to the South");
 			}
 			else if(featureList.get(0).getX() < f.getX() & featureList.get(0).getY() < f.getY()) {
 				System.out.println("There is someone to the North East");
+			}
+			else if(featureList.get(0).getX() > f.getX() & featureList.get(0).getY() < f.getY()) {
+				System.out.println("There is someone to the North West");
 			}
 			else if(featureList.get(0).getX() == f.getX() & featureList.get(0).getY() < f.getY()) {
 				System.out.println("There is someone to the North");
@@ -94,9 +133,5 @@ public class FeatureManager {
 				System.out.println("There is someone to the East");
 			}
 		}
-	}
-	
-	public void checkLocation() {
-		
 	}
 }
